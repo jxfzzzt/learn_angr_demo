@@ -5,9 +5,10 @@ def main():
     start_addr = 0x08048980
     init_state = proj.factory.blank_state(addr=start_addr)
 
-    pass1 = init_state.solver.BVS('pass1', 32)
-    pass2 = init_state.solver.BVS('pass2', 32)
-    pass3 = init_state.solver.BVS('pass3', 32)
+    reg_size = 4 * 8
+    pass1 = init_state.solver.BVS('pass1', reg_size)
+    pass2 = init_state.solver.BVS('pass2', reg_size)
+    pass3 = init_state.solver.BVS('pass3', reg_size)
 
     init_state.regs.eax = pass1
     init_state.regs.ebx = pass2
