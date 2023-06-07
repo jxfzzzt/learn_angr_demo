@@ -11,7 +11,6 @@ def main():
     pass1 = init_state.solver.BVS('pass1', file_size * 8)
     sim_file = angr.storage.SimFile(filename, content=pass1, size=file_size)
     init_state.fs.insert(filename, sim_file)
-    sm = proj.factory.simulation_manager(init_state)
 
     def is_good(state):
         return b'Good Job' in state.posix.dumps(1)
@@ -19,6 +18,7 @@ def main():
     def is_bad(state):
         return b'Try again' in state.posix.dumps(1)
 
+    sm = proj.factory.simulation_manager(init_state)
     sm.explore(find=is_good, avoid=is_bad)
     if sm.found:
         found_state = sm.found[0]

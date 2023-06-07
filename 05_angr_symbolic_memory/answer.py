@@ -22,7 +22,6 @@ def main():
     init_state.memory.store(p_addr3, pass3)
     init_state.memory.store(p_addr4, pass4)
 
-    sm = proj.factory.simulation_manager(init_state)
 
     def is_good(state):
         return b'Good Job' in state.posix.dumps(1)
@@ -30,6 +29,7 @@ def main():
     def is_bad(state):
         return b'Try again' in state.posix.dumps(1)
 
+    sm = proj.factory.simulation_manager(init_state)
     sm.explore(find=is_good, avoid=is_bad)
     if sm.found:
         found_state = sm.found[0]

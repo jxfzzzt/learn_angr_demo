@@ -15,7 +15,6 @@ def main():
     init_state.memory.store(buffer_addr, pass1)
 
     sm = proj.factory.simulation_manager(init_state)
-
     sm.explore(find=check_addr)
 
     if sm.found:

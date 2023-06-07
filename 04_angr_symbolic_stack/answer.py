@@ -20,7 +20,6 @@ def main():
     init_state.stack_push(pass1)
     init_state.stack_push(pass2)
 
-    sm = proj.factory.simulation_manager(init_state)
 
     def is_good(state):
         return b'Good Job' in state.posix.dumps(1)
@@ -28,7 +27,7 @@ def main():
     def is_bad(state):
         return b'Try again' in state.posix.dumps(1)
 
-
+    sm = proj.factory.simulation_manager(init_state)
     sm.explore(find=is_good, avoid=is_bad)
 
     if sm.found:
