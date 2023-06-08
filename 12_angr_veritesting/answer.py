@@ -4,7 +4,7 @@ def main():
     proj = angr.Project('12_angr_veritesting')
 
     init_state = proj.factory.entry_state()
-    sm = proj.factory.simulation_manager(init_state, veritesting=False)
+    sm = proj.factory.simulation_manager(init_state, veritesting=True)
 
     def is_good(state):
         return b'Good Job' in state.posix.dumps(1)
